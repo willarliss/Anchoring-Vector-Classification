@@ -6,6 +6,35 @@ from .base import AVMBase
 
 class AnchoringVectorClassifier(AVMBase):
 
+    def __init__(self, *,
+                 metric='euclidean',
+                 p=None,
+                 kernel=None,
+                 coef0=0.0,
+                 gamma=None,
+                 degree=2,
+                 eta=1.,
+                 tol=1e-4,
+                 max_iter=500,
+                 solver='gradient-desc',
+                 batch_size=1,
+                 random_state=None):
+
+        super().__init__(
+            metric=metric,
+            p=p,
+            kernel=kernel,
+            coef0=coef0,
+            gamma=gamma,
+            degree=degree,
+            eta=eta,
+            tol=tol,
+            max_iter=max_iter,
+            solver=solver,
+            batch_size=batch_size,
+            random_state=random_state,
+        )
+
     def _decode_pred(self, pred):
 
         return self._labeler.inverse_transform(

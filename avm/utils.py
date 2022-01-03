@@ -79,3 +79,24 @@ def hessian_approx(func, params, eps=EPS):
 def linear_kernel(X):
 
     return np.array([X.dot(x) for x in X])
+
+
+def class_centroids(X_train, y_train):
+
+    centroids = np.zeros((y_train.shape[1], X_train.shape[1]))
+
+    for idx in range(centroids.shape[0]):
+        mask = (y_train[:, idx] == 1)
+        centroids[idx, :] = X_train[mask].mean(0)
+
+    return centroids
+
+
+def convergence(grad, tol=1e-4):
+
+    return np.mean(grad**2)**0.5 < tol
+
+
+def shrinkage_penalty(center, centroids, alpha=0.1):
+
+    return -alpha * np.abs(center-centroids).min(1).sum()
