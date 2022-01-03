@@ -88,8 +88,6 @@ def batch_grad_desc(X_train, y_train, distance_fn=None, *,
     anchor = class_centroids(X_train, y_train)
     anchor += rng.normal(size=shape, scale=1e-4, loc=0.)
 
-    global_center = class_centroids(X_train, np.ones((X_train.shape[0], 1)))
-
     count = 0
     while True:
 
